@@ -1,0 +1,61 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container mt-5 ">
+    <h1 class="text-warning mb-5 border-bottom ">CONTACT US</h1>
+    <div class="row text-white mb-5">
+        <p class="mx-auto mb-5">
+            Do rem ipsum dolor sit amet consectetur adipisicing elit. 
+            Accusantium, blanditiis laboriosam 
+            labore quod culpa perferendis
+        </p>
+        <div class="col-sm-9 mb-5">
+            <form action="">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label for="inputName">Your Name </label>
+                    <input type="text" class="form-control" id="inputName" /> 
+                    </div>
+                <div class="form-group col-md-6">
+                    <label for="inputName">Your Email *</label>
+                    <input type="email" class="form-control" id="inputEmail"  required/> 
+                </div>
+                </div>  
+                <div class="form-group ">
+                    <label for="inputSubject">Your Subject </label>
+                    <input type="text" class="form-control" id="inputSubject" /> 
+                    </div>
+                    <div class="mb-3">
+                    <label for="inputTextarea">Your Massage *</label>
+                    <textarea  class="form-control" id="inputTextarea" required ></textarea> 
+                    </div>
+                    <button class="btn btn-primary" type="submit">Send</button>
+            </form>        
+    </div>
+    <div class="col-sm-3 text-center">
+        <ul class="list-unstyled">
+            <li>
+                <i   style="color: greenyellow;"  class="fas fa-map-marker-alt fa-2x i-color" ></i>
+                <p>Saharanpur (UP)</p>
+            </li>
+            <li>
+                <i style="color: greenyellow;" class="fas fa-phone mt-4 fa-2x i-color" > </i>
+                <p>+91 9084351800</p>
+            </li>
+            <li>
+                <i style="color: greenyellow;" class="fas fa-envelope mt-4 fa-2x i-color" > </i>
+                <p>aahadrahi786@email.com</p>
+                </li>
+            
+        </ul>
+    </div>
+    </div>
+
+</div>
+<div class="text-center">
+    <a href="https://www.linkedin.com/in/aahad-rahi-4763aa222/" target="_blank"><i style="margin: 0 13px;" class="fab fa-linkedin-in i-color mr-3"></i></a>
+    <a href="https://www.facebook.com/arham.rahi.14" target="_blank"><i style="margin: 0 13px;"  class="fab fa-facebook-f i-color mr-3"></i></a>
+    <a href="https://www.instagram.com/theaahadrahi786/" target="_blank"><i style="margin: 0 13px;"  class="fab fa-instagram i-color mr-3"></i></a>
+    <a href="#" target="_blank"><i style="margin: 0 13px;"  class="fab fa-dribbble i-color mr-3"></i></a>
+
+</div>
+{% endblock content %}

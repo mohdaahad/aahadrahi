@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class=" mt-5 ">
+    <div class = "text-center">   <img src="{% static 'core/img/user2.jpg' %}" alt="profilepic"
+        class="img-thumbnail" width="250px"
+        height="150px"></div>
+ 
+    <div class=" mt-5 text-white mx-5n text-justify">
+        <h1 class="font-weight-bold st-font ">Hello,</h1>
+        <div class = "px-4 " style = "line-height: 2rem;"> 
+            <p style = "text-indent: 100px;;">i am <b class = text-warning> Aahad Rahi</b>             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat similique officia sed beatae in. Ducimus sunt harum laudantium dolorem inventore sequi necessitatibus explicabo minima voluptatem?</p>
+            <p>Lorem ipsum.Similique mollitia, accusantium accusamus quam aut ipsam aperiam veritatis distinctio ut tempore! <b class = text-warning>gs tecnology</b>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit blanditiis, maxime cupiditate recusandae totam sed vel suscipit iure dolorum delectus.
+            </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque similique accusantium sunt necessitatibus omnis. Eaque esse doloribus voluptates architecto atque eius blanditiis officia rem officiis!</p>
+    </div>
+    </div>
+<div class = "text-center">  
+      <a href="{% url 'contact' %}" style="margin: 0 13px;"  class = "btn btn-outline-warning my-3 mr-5">Hire me</a>
+    <a href="{% url 'contact' %}" style="margin: 0 13px;"  class = "btn btn-outline-info my-3">Contact</a></div>
+</div>
+{% endblock content %}
