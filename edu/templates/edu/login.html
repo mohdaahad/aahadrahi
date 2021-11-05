@@ -1,0 +1,24 @@
+{%  extends "core/base.html" %}
+{% block content %} 
+<div>
+  <h1 class="text-warning mb-5 border-bottom ">LOGIN</h1>
+</div>
+<div>
+  
+</div>
+<div >
+  <h2 style="text-align: center;  
+  color: rgba(0, 110, 255, 0.801);  
+  padding-top:5%;">login</h2>
+  </div>
+<div style="color: white; padding-top: 30px; " class="text-center" >
+<form action="" method="POST" novalidate>
+  {% csrf_token %}
+      {{form.as_p }}
+       
+    </div >
+<div >
+     <input style="margin-left: 35%;" class="login-box"  type="submit" value="Submit">
+ </div> 
+
+    {% endblock content %}

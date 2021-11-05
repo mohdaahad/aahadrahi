@@ -2,18 +2,11 @@
 
     <div style="border-right: #ffc107  .1rem solid; height:100%; " >
         <div class="text-center">
-            <div>
-                <input type="checkbox" class="checkbox" id="checkbox">
-              <label for="checkbox" class="label">
-                <i class="fas fa-moon"></i>
-                <i class='fas fa-sun'></i>
-                <div class='ball'>
-              </label>
-            </div>
+            
             <img src="{% static 'core/img/user2.jpg' %}" alt="profile pic"
                     class="img-fluid rounded-circle mt-5 " width="100px"
                     height="100px">
-                    <h3 class="text-white mt-3 st-font">Aamir  Malik</h3>
+                    <h3 class="text-white mt-3 st-font">Aahad Rahi</h3>
         </div>
         
 
@@ -21,12 +14,9 @@
                 <nav class="nav flex-column text-center">
                     <a href="{% url 'home' %}" class="nav-link {{home}}">Home</a>
                     <a href="{% url 'services' %}" class="nav-link {{services}}">Services</a>
-<<<<<<< HEAD
-                   
-=======
-                   {# <a href="{% url 'skill' %}" class="nav-link {{skill}}">Skill</a> #}
->>>>>>> origin/aamir
+                 
                     <a href="{% url 'contact' %}" class="nav-link {{contact}}">Contact</a>
+                    <a href="{% url 'regis' %}" class="nav-link {{login}}">Login</a> 
                 </nav>
             </div>
             
