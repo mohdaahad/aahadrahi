@@ -1,7 +1,10 @@
 {%  extends "core/base.html" %}
+{% block stylelinks %} 
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock stylelinks %}
 {% block content %} 
 <div>
-  <h1 class="text-warning mb-5 border-bottom ">LOGIN</h1>
+  <h1 style="padding-top: 10px;" class="text-warning mb-5 border-bottom ">LOGIN</h1>
 </div>
 <div>
   
@@ -14,11 +17,23 @@
 <div style="color: white; padding-top: 30px; " class="text-center" >
 <form action="" method="POST" novalidate>
   {% csrf_token %}
-      {{form.as_p }}
+  {% for field in form %}
+  {% if field.widget_type != 'checkbox' %}
+    <div class="modal-form-group">
+      <i class="input-icon material-icons" style="opacity: 1; width: auto;">account_circle</i>
+          {{ field }}
+    </div>
+  {% else %}
+    {{ field }}
+    {% endif %}
+    {% endfor %}
+</div>
+      <!-- {{form.as_p}} -->
+
        
     </div >
 <div >
-     <input style="margin-left: 35%;" class="login-box"  type="submit" value="Submit">
+     <input style="margin-left: 50%;" class="login-box"  type="submit" value="Submit">
  </div> 
 
     {% endblock content %}

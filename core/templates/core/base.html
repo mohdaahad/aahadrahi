@@ -10,7 +10,9 @@
         <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+        {% block stylelinks %} 
+        {% endblock stylelinks %}
+                <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
         {% block corecss %}
         <link rel="stylesheet" href="{% static 'core/css/core.css' %}">
         {% endblock corecss %}
