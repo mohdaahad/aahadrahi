@@ -4,6 +4,8 @@ urlpatterns = [
    
     path ("registration/", views.showformdata ,name="regis"),
     path ("success/", views.thankyou ),
+    path('skill/', views.skill, name = 'skill')
+
    
 ]
 

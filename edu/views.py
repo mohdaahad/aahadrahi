@@ -7,7 +7,9 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import StudentRegistration
 # Create your views here.
-
+def skill (request):
+    context={'skill':'active'}
+    return render(request, "edu/skill.html", context)
 def login (request):
     context={'login':'active'}
     return render(request, "edu/login.html", context)
@@ -20,15 +22,12 @@ def showformdata(request):
          name = fm.cleaned_data['name']
          email = fm.cleaned_data['email']
          password= fm.cleaned_data['password']
-         print('Name', name )
-         print('email', email)
-         print('password', password)
+         
          return HttpResponseRedirect('/regi/success/' )
-        #  return render(request, 'edu/success.html', {'nm':name})
+        
     else:
         fm = StudentRegistration()
-    # for field in fm:
-    #     print("%%%%%%%%%%:::: ",field,field.widget_type)    
+     
     return render(request, 'edu/login.html', {'form':fm})
 
 

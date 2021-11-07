@@ -1,39 +1,812 @@
-{%  extends "core/base.html" %}
-{% block stylelinks %} 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-{% endblock stylelinks %}
-{% block content %} 
-<div>
-  <h1 style="padding-top: 10px;" class="text-warning mb-5 border-bottom ">LOGIN</h1>
-</div>
-<div>
+{% extends "core/base.html" %} 
+{% block content  %}
+
+  <!-- Facebook Pixel Code -->
+  <script async="">
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)}; 
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '2320390688070878');
+      fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2320390688070878&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Facebook Pixel Code -->
+
+  <script async="">
+      window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '534961220012939',
+            xfbml      : true,
+            version    : 'v2.5'
+          });
+      };
+
+      (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-71763465-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-71763465-1', { 'optimize_id': 'GTM-WDSZVB6'});
+      gtag('config', 'AW-796001856');
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script async="" src="https://cdnpractice.geeksforgeeks.org/js-min/bootstrap.min.js"></script>
   
-</div>
-<div >
-  <h2 style="text-align: center;  
-  color: rgba(0, 110, 255, 0.801);  
-  padding-top:5%;">login</h2>
+  <script async="" src="https://api.geeksforgeeks.org/js/typeahead.jquery.min.js"></script>
+  <script async="" src="https://api.geeksforgeeks.org/js/bloodhound.min.js"></script>
+  <script async="" src="https://cdnpractice.geeksforgeeks.org/js-min/header-footer.js?v=4"></script>
+  <meta property="og:title" content="Courses | Practice | GeeksforGeeks | A computer science portal for geeks">        <script>
+      function openGuestLoginModal() {
+          if ($('.login-modal-btn')) {
+              function openModalforGuests() {
+                  setTimeout(function() {
+                    $('.login-modal-btn').click();
+                  }, 5000)
+              }
+
+              function setCookie() {
+                  var guest = document.cookie.indexOf('guest=');
+                  if (guest == -1) {
+                      date = new Date();
+                      date.setTime(date.getTime() + (2 * 24 * 60 * 60 * 1000));
+                      expires = "; expires=" + date.toGMTString();
+                      document.cookie = "guest=yes" + expires + "; path=/";
+                      openModalforGuests()
+                  }
+              }
+              var callGuestModal = !1;
+              if (localStorage.getItem('guestPageCount')) {
+                  localStorage.setItem('guestPageCount', parseInt(localStorage.getItem('guestPageCount')) + 1);
+                      if (parseInt(localStorage.getItem('guestPageCount')) > 2) {
+                          callGuestModal = !0;
+                          localStorage.removeItem('guestPageCount')
+                      }
+              } else if (!localStorage.getItem('guestPageCount') && document.cookie.indexOf('guest=') == -1) {
+                  localStorage.setItem('guestPageCount', 1)
+              }
+              if (callGuestModal) {
+                  setCookie()
+              }
+              if (!callGuestModal) {
+                  setTimeout(function() {
+                      setCookie()
+                  }, 20000)
+              }
+          }
+      }
+      
+      $(document).ready(function() {
+          $('body').on('click', '.login-modal-btn', function(e){
+              e.preventDefault();
+              if($('.login-modal-include').children().length==0){
+                  $('.login-modal-include').html(loginModalHtmlTemplate);
+                  $(".login-register-div").addClass("w-100");
+                  removejscssfile("auth.min.css", "css");
+                  $( this ).off(e );
+                  $('.login-modal-btn').click();
+              }
+          })
+          openGuestLoginModal();
+          $('[data-toggle="popover"]').popover(); 
+
+          $('body').on('click', 'a > #popover--button', function(e) {e.preventDefault(); return true;});
+          
+          var queries = document.querySelectorAll('.mediaquerydependent'),
+          all = queries.length,
+          cur = null,
+          attr = null;
+          while (all--) {
+              cur = queries[all];
+              if (cur.dataset.media &&
+                  window.matchMedia(cur.dataset.media).matches) {
+                  for (attr in cur.dataset) {
+                      if (attr !== 'media') {
+                          cur.setAttribute(attr, cur.dataset[attr]);
+                      }
+                  }
+              }
+          }
+
+          window.addEventListener("load", function(){
+              window.cookieconsent.initialise({
+                  "palette": {
+                      "popup": {
+                        "background": "#3c404d",
+                        "text": "#d6d6d6",
+                        "font-size": "12px"
+                      },
+                      "button": {
+                        "background": "#8bed4f"
+                      }
+                  },
+                  "theme": "classic",
+                      onStatusChange: function(status) {
+                      
+                      },
+                      "content": {
+                      "message": "We use cookies to ensure you have the best browsing experience on our website. By using our site, you acknowledge that you have read and understood our <a href=\"https://www.geeksforgeeks.org/cookie-policy/\" class=\"cc-link\" target=\"_blank\">Cookie Policy</a> & ",
+                      "link": "Privacy Policy",
+                      "href": "https://www.geeksforgeeks.org/privacy-policy/"
+                      },
+                  cookie: {
+                      name : "geeksforgeeks_consent_status",
+                  }
+              })
+          }); 
+      });
+  </script>
+
+<script async="" src="https://script.hotjar.com/modules.d4630e91cffbd6b56a37.js" charset="utf-8"></script><style type="text/css">iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;}</style><script src="https://dev.visualwebsiteoptimizer.com/web/djIkdGU6Ny4wOmFzeW5jJWdxdWVyeQ==/tag-167acbb47fb7397cbe9064e626d5d4d4.js" crossorigin="anonymous" type="text/javascript"></script><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/796001856/?random=1636254566872&amp;cv=9&amp;fst=1636254566872&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=768&amp;u_w=1366&amp;u_ah=741&amp;u_aw=1304&amp;u_cd=24&amp;u_his=4&amp;u_tz=330&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;gtm=2oab31&amp;sendb=1&amp;ig=1&amp;data=event%3Dgtag.config&amp;frm=0&amp;url=https%3A%2F%2Fpractice.geeksforgeeks.org%2Fcourses%2Fdsa-self-paced%3Fgclid%3DCjwKCAjwz5iMBhAEEiwAMEAwGPkhWWFAQr-ujN6osqASVV26Ne_oqeweFhjCX2xQkiHUzsqV05u6SBoCqZkQAvD_BwE&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;tiba=Courses%20%7C%20Practice%20%7C%20GeeksforGeeks%20%7C%20A%20computer%20science%20portal%20for%20geeks&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><script charset="utf-8" src="/static/js/0.c145bd52.chunk.js"></script><script charset="utf-8" src="/static/js/3.dd449160.chunk.js"></script><script charset="utf-8" src="/static/js/17.3078e9ba.chunk.js"></script><link rel="stylesheet" type="text/css" href="/static/css/15.fc860aa4.chunk.css"><script charset="utf-8" src="/static/js/15.7de10c2d.chunk.js"></script><style type="text/css" data-fbcssmodules="css:fb.css.base css:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out_v2{animation-duration:300ms;animation-name:fb_mpn_fade_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_fade_out{0%{bottom:30px;opacity:1}100%{bottom:0;opacity:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes slideInFromBottom{0%{opacity:.1;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}@keyframes slideInFromBottomDelay{0%{opacity:0;transform:translateY(100%)}97%{opacity:0;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}</style><script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/796001856/?random=1636254568796&amp;cv=9&amp;fst=1636254568796&amp;num=1&amp;bg=ffffff&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=768&amp;u_w=1366&amp;u_ah=741&amp;u_aw=1304&amp;u_cd=24&amp;u_his=4&amp;u_tz=330&amp;u_java=false&amp;u_nplug=5&amp;u_nmime=2&amp;gtm=2oab31&amp;sendb=1&amp;ig=1&amp;data=event%3Doptimize.callback&amp;frm=0&amp;url=https%3A%2F%2Fpractice.geeksforgeeks.org%2Fcourses%2Fdsa-self-paced%3Fgclid%3DCjwKCAjwz5iMBhAEEiwAMEAwGPkhWWFAQr-ujN6osqASVV26Ne_oqeweFhjCX2xQkiHUzsqV05u6SBoCqZkQAvD_BwE&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;tiba=Courses%20%7C%20Practice%20%7C%20GeeksforGeeks%20%7C%20A%20computer%20science%20portal%20for%20geeks&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script><style></style></head>
+
+
+
+
+
+
+
+
+  <
+ 
+  <!-- For Detecting Ad Blocker -->
+  <div class="ad-banner">
   </div>
-<div style="color: white; padding-top: 30px; " class="text-center" >
-<form action="" method="POST" novalidate>
-  {% csrf_token %}
-  {% for field in form %}
-  {% if field.widget_type != 'checkbox' %}
-    <div class="modal-form-group">
-      <i class="input-icon material-icons" style="opacity: 1; width: auto;">account_circle</i>
-          {{ field }}
+ 
+  
+      <div class="header-top__times">
+          <i class="material-icons">close</i>
+      </div>
+  </div>
+
+  
+          </div>
+      </a>
+     
+/* css end for spinner loading */
+<style>
+.login-modal-div .left{
+  text-align: left;
+}
+
+.login-modal-div .right{
+  text-align: right;
+}
+
+.login-modal-div .pull-right{
+  float: right;
+}
+
+.login-modal-div .pull-left{
+  float: left;
+}
+
+.modal-form-label{
+  vertical-align: middle;
+  font-weight: 500;
+  color: #404040;
+  font-size: 12px;
+  position: relative;
+}
+
+.login-modal-div a{
+  color: #979faf;
+}
+
+.login-modal-div a:hover{
+  color: #0f9d58;
+  text-decoration: underline;
+}
+
+.login-modal-div .btn{
+  background-color: whitesmoke;
+  background-image: -webkit-gradient(linear, top left, bottom left, color-stop(0, #2bbe60), color-stop(1, #0f9d58));
+  background-image: -webkit-linear-gradient(top, #2bbe60, #0f9d58);
+  background-image: linear-gradient(to bottom, #2bbe60, #0f9d58);
+  border: 1px solid #0f9d58;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08),inset 0 -1px 4px rgba(151,159,175,0.2);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  position: relative;
+  color: #39424e;
+  text-align: center;
+  text-decoration: none !important;
+  vertical-align: middle;
+}
+
+.login-modal-div .btn-green{
+  color: #fff;
+  background-color: #0f9d58;
+  width: 100%;
+  text-shadow: none;
+}
+
+.login-modal-div .forgot-link, .login-modal-div .login-link{
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  position: relative;
+  bottom: -5px;
+}
+
+@media(max-width: 768px){
+  .login-modal-div .forgot-link, .login-modal-div .login-link{
+    padding: 10px 0px;    
+  }
+}
+
+.login-modal-div .social-signin-div{
+  border: 1px solid #ddd;
+  border-top: none;
+  padding-bottom: 20px;
+}
+
+.login-modal-div .social-signin-div .social-div{
+  width: 50%;
+  display: inline-block;
+  padding: 5px 30px;
+}
+
+.login-modal-div .social-signin-div .tnc-div{
+  font-size: 10px;
+  padding: 0 15px;
+  color: #999;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.login-modal-div .social-signin-div .tnc-div a{
+  color: #0f9d58;
+}
+
+.login-modal-div .social-signin-div .social-divider{
+  width: 80%;
+  text-align: center;
+  border-bottom: 1px solid #979faf;
+  line-height: 0.1em;
+  margin: -20px 0 20px;
+  margin-left: 10%;
+}
+
+.login-modal-div .social-signin-div .social-divider span{
+  background: #fff;
+  padding: 0 10px;
+}
+
+.login-modal-div .social-signin-div .btn-social{
+  padding-left: 40px;
+  color: #fff;
+}
+
+.login-modal-div .social-signin-div .btn-social span.fa{
+  padding-top: 2px;
+}
+
+.login-modal-div .social-signin-div .btn-google{
+  background-image: -webkit-gradient(linear, top left, bottom left, color-stop(0, #dd4e41), color-stop(1, #c9453a));
+  background-image: -webkit-linear-gradient(top, #dd4e41, #c9453a);
+  background-image: linear-gradient(to bottom, #dd4e41, #c9453a);
+  color: #fff;
+  border: 1px solid #c9453a;
+  padding-left: 60px;
+}
+
+.login-modal-div .social-signin-div .btn-facebook{
+  background-image: -webkit-gradient(linear, top left, bottom left, color-stop(0, #4b66a0), color-stop(1, #3b5998));
+  background-image: -webkit-linear-gradient(top, #4b66a0, #eb5998);
+  background-image: linear-gradient(to bottom, #4b66a0, #3b5998);
+  color: #fff;
+  border: 1px solid #3b5998;
+}
+
+.login-modal-div .social-signin-div .btn-linkedin{
+  background-image: -webkit-gradient(linear, top left, bottom left, color-stop(0, #0073b1), color-stop(1, #075b8c));
+  background-image: -webkit-linear-gradient(top, #0073b1, #075b8c);
+  background-image: linear-gradient(to bottom, #0073b1, #075b8c);
+  color: #fff;
+  border: 1px solid #075b8c;
+  padding-left: 60px;
+}
+
+.login-modal-div .social-signin-div .btn-github{
+  background-image: -webkit-gradient(linear, top left, bottom left, color-stop(0, #4a4646), color-stop(1, #191717));
+  background-image: -webkit-linear-gradient(top, #4a4646, #191717);
+  background-image: linear-gradient(to bottom, #4a4646, #191717);
+  color: #fff;
+  border: 1px solid #191717;
+  padding-left: 60px;
+}
+
+.login-modal-div .forgot-div{
+  padding: 20px 30px 30px 30px;
+  border: 1px solid #ddd;
+  display: none;
+}
+
+.login-modal-div .forgot-div p:first-of-type{
+  font-weight: 400;
+  color: #404040;
+}
+
+.login-modal-div div.input-error{
+  font-size: 12px;
+  color: #b71c1c;
+  letter-spacing: 0.83;
+  text-align: left;
+  position: relative;
+  bottom: 10px;
+  font-weight: 500;
+}
+
+#glogin, #fblogin, #inlogin, #gitlogin{
+  display: block;
+}
+
+@media(max-width:468px){
+  .login-modal-div .social-signin-div .social-div{
+    padding: 0;
+  }
+
+  #glogin, #fblogin, #inlogin, #gitlogin{
+    font-size: 14px !important;
+    display: inline-block;
+  }
+
+  #glogin{
+    padding-left: 50px !important;
+  }
+
+  #inlogin{
+    padding-left: 43px !important;
+  }
+}
+</style>
+
+<div class="spinner-loading-overlay"></div>
+<div class="login-modal-div" style="display: block;">
+<div class="modal-content">
+  <div class="close-div"><span class="close">×</span></div>
+  <div class="white-bg center modal-header">
+    <div class="login-register-div w-100">
+      <input id="tab1" type="radio" name="tabs" checked="">
+      <label class="tab-label" for="tab1">Sign In</label>
+    
+      <input id="tab2" type="radio" name="tabs">
+      <label class="tab-label" for="tab2">Sign Up</label>
+
+      <section id="content1">
+        <form method="POST" class="login-form" id="Login">
+          <input type="hidden" name="reqType" value="Login">
+          <div class="modal-form-group">
+            <div class="extra"></div>
+          </div>
+          <div class="modal-form-group">
+            <i class="input-icon material-icons">account_circle</i>
+            <input name="user" id="luser" required="required" type="text" class="modal-form-input" placeholder="Username or email">
+          </div>
+          <div class="modal-form-group">
+            <i class="input-icon material-icons">lock</i>
+            <input name="pass" id="password" type="password" required="required" class="modal-form-input" placeholder="Password">
+          </div>
+          <div class="modal-form-group left">
+            <input name="rem" type="hidden" value="false">
+            <input name="to" type="hidden" value="https://practice.geeksforgeeks.org/courses/dsa-self-paced?gclid=CjwKCAjwz5iMBhAEEiwAMEAwGPkhWWFAQr-ujN6osqASVV26Ne_oqeweFhjCX2xQkiHUzsqV05u6SBoCqZkQAvD_BwE?loginMode=154">
+            <input name="rem" type="checkbox" checked="">
+            <label class="modal-form-label" for="remember">Remember me</label>
+            <a class="pull-right forgot-link">Forgot Password</a>
+          </div>
+          <div class="modal-form-group left" style="display: none;">
+            <center><div id="loginCaptcha"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LexF0sUAAAAADiQjz9BMiSrqplrItl-tWYDSfWa&amp;co=aHR0cHM6Ly9wcmFjdGljZS5nZWVrc2ZvcmdlZWtzLm9yZzo0NDM.&amp;hl=en&amp;v=kcXVPRWG7fMILHmzon0--fD3&amp;size=normal&amp;cb=l25ks8e3zagk" width="304" height="78" role="presentation" name="a-ing9ute7ihdj" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div></center>
+          </div>
+          <button class="btn btn-green signin-button" type="submit">Sign In</button>
+        </form>
+      </section>
+      <section id="content2">
+        <form method="POST" class="login-form" id="Register">
+          <input type="hidden" name="reqType" value="Register">
+          <div class="modal-form-group">
+            <div class="extra"></div>
+          </div>
+          <!-- <div class="modal-form-group">
+            <i class="input-icon material-icons">account_circle</i>
+            <input name="user" id="reg-user" type="text" required="required" class="modal-form-input" placeholder="Username">
+          </div> -->
+          <div class="modal-form-group">
+            <i class="input-icon material-icons">email</i>
+            <input name="email" id="email" type="email" required="required" class="modal-form-input" placeholder="E-mail">
+          </div>
+          <div class="modal-form-group">
+            <i class="input-icon material-icons">lock</i>
+            <input name="pass" id="reg-password" type="password" required="required" class="modal-form-input" placeholder="Password">
+          </div>
+          <div class="modal-form-group">
+            <i class="input-icon material-icons">business</i>
+            <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input autocomplete="off" type="text" class="modal-form-input typeahead tt-hint" readonly="" spellcheck="false" tabindex="-1" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);" dir="ltr"><input name="institute" id="organization" autocomplete="off" required="required" type="text" class="modal-form-input typeahead tt-input" placeholder="Institution/Organization" spellcheck="false" dir="auto" aria-activedescendant="" aria-owns="organization_listbox" role="combobox" aria-readonly="true" aria-autocomplete="list" style="position: relative; vertical-align: top; background-color: transparent;"><span role="status" aria-live="polite" style="position: absolute; padding: 0px; border: 0px; height: 1px; width: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap;"></span><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 500; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><div role="listbox" class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div role="presentation" class="tt-dataset tt-dataset-0"></div></div></span>
+          </div>
+          <div class="modal-form-group">
+            <center><div id="registerCaptcha"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LexF0sUAAAAADiQjz9BMiSrqplrItl-tWYDSfWa&amp;co=aHR0cHM6Ly9wcmFjdGljZS5nZWVrc2ZvcmdlZWtzLm9yZzo0NDM.&amp;hl=en&amp;v=kcXVPRWG7fMILHmzon0--fD3&amp;size=normal&amp;cb=l9l8tiddqgu5" width="304" height="78" role="presentation" name="a-u8o68gdei7w" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div></center>
+          </div>
+          <input name="to" type="hidden" value="https://practice.geeksforgeeks.org/courses/dsa-self-paced?gclid=CjwKCAjwz5iMBhAEEiwAMEAwGPkhWWFAQr-ujN6osqASVV26Ne_oqeweFhjCX2xQkiHUzsqV05u6SBoCqZkQAvD_BwE?loginMode=154">
+          <button class="btn btn-green signup-button" type="submit">Sign Up</button>
+        </form>
+      </section>
+      <div class="social-signin-div">
+        <div class="social-divider">
+          <span>or</span>
+        </div>
+        <div class="google-div social-div pull-left">
+          <a id="glogin" href="javascript:void(0)" class="btn btn-social btn-google">
+            <span class="fa fa-google"></span>Google
+          </a>
+        </div>
+        <div class="facebook-div social-div">
+          <a id="fblogin" href="javascript:void(0)" class="btn btn-social btn-facebook">
+            <span class="fa fa-facebook"></span>Facebook
+          </a>  
+        </div>
+        <p></p>
+        <div class="linkedin-div social-div pull-left">
+          <a id="inlogin" class="btn btn-social btn-linkedin">
+              <span class="fa fa-linkedin"></span>LinkedIn
+          </a>
+        </div>
+        <div class="github-div social-div pull-left">
+          <a id="gitlogin" class="btn btn-social btn-github">
+              <span class="fa fa-github"></span>GitHub
+          </a>
+        </div>
+        <div style="padding: 10px 0px;font-size: 14px;font-weight: 500;padding-top: 20px;"><a href="" style="color: #0f9d58;" target="_blank">Why Create an Account?</a></div>
+        <div class="tnc-div">
+            By creating this account, you agree to our <a href="" target="_blank">Privacy Policy</a> &amp; <a href="" target="_blank">Cookie Policy</a>.
+        </div>
+      </div>
     </div>
-  {% else %}
-    {{ field }}
-    {% endif %}
-    {% endfor %}
+    <div class="forgot-div">
+      <form class="login-form" id="Forgot">
+        <input type="hidden" name="reqType" value="Forgot">
+        <div class="modal-form-group">
+          <div class="extra"></div>
+        </div>
+        <div class="modal-form-group">
+          <p class="left">Please enter your email address or userHandle.</p>
+        </div>
+        <div class="modal-form-group">
+          <i class="input-icon material-icons">account_circle</i>
+          <input name="user" id="fuser" type="text" class="modal-form-input" placeholder="Username/Email">
+        </div>
+        <div class="modal-form-group">
+          <center><div id="forgotCaptcha"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LexF0sUAAAAADiQjz9BMiSrqplrItl-tWYDSfWa&amp;co=aHR0cHM6Ly9wcmFjdGljZS5nZWVrc2ZvcmdlZWtzLm9yZzo0NDM.&amp;hl=en&amp;v=kcXVPRWG7fMILHmzon0--fD3&amp;size=normal&amp;cb=50sxatasmt8g" width="304" height="78" role="presentation" name="a-33rsphl3fmz" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response-2" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div></center>
+        </div>
+        <div class="modal-form-group left">
+          <a class="login-link">Back to Login</a>
+        </div>
+        <button class="btn btn-green center reset-button" type="submit">Reset Password</button>
+      </form> 
+    </div>
+  </div>
 </div>
-      <!-- {{form.as_p}} -->
+</div>
 
-       
-    </div >
-<div >
-     <input style="margin-left: 50%;" class="login-box"  type="submit" value="Submit">
- </div> 
+<script async="" src="https://authcdn.geeksforgeeks.org/js/typeahead.bundle.min.js"></script>
+<script>
 
-    {% endblock content %}
+  // set csrf token for login
+  (function(){
+      $.ajax({
+          url: 'https://auth.geeksforgeeks.org/setLoginToken.php',
+          type: 'POST',
+          xhrFields: {
+               withCredentials: true
+          },
+          success: function(data){
+          },
+          error: function(data){
+              console.log(data);
+          }
+      });
+  })();
+
+$('#loginCaptcha').closest('.modal-form-group').hide();
+
+var redirectUrl = $('#Login').find('input[name=to]').val();
+
+// pop up modal when button clicks.
+$('body').on('click', '.login-modal-btn', function(e){
+  e.preventDefault();
+  var href = window.location.href;
+  if($(this).prop("tagName") == "A"){
+      href = $(this).attr('href');
+  }
+  else if($(this).prop("tagName") == "FORM"){
+      href = $(this).attr('action');
+  }
+  $('.login-modal-div').find('input[name=to]').val(href);
+  $('.login-modal-div').fadeIn('fast');
+  redirectUrl = href;
+});
+
+
+//google captch initialization for register/forgot section.
+var captchaSiteKey = '6LexF0sUAAAAADiQjz9BMiSrqplrItl-tWYDSfWa';
+var forgotWidgetId;
+var registerWidgetId;
+var loginWidgetId;
+var onloadCallback = function() {
+    // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+    // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+    registerWidgetId = grecaptcha.render('registerCaptcha', {
+      'sitekey' : captchaSiteKey,
+    });
+    loginWidgetId = grecaptcha.render('loginCaptcha', {
+      'sitekey' : captchaSiteKey,
+    });
+    forgotWidgetId = grecaptcha.render('forgotCaptcha', {
+      'sitekey' : captchaSiteKey
+    });
+};
+
+// check required field.
+$('body').on('blur', 'input[required=required]', function(){
+  var val = $(this).val();
+  $('.error-focus').removeClass('error-focus');
+  $('div.input-error').remove();
+  if(val == "" || val == null || val == undefined){
+    $(this).closest('.modal-form-group').append('<div class="input-error">Field can not be empty.</div>');
+    $(this).addClass('error-focus');
+    $(this).focus();
+  }
+});
+
+//remove error message if input have some words.
+$('body').on('keydown', 'input[required=required]', function(){
+  var val = $(this).val();
+  if(val != "" || val != null || val != undefined){
+    $(this).removeClass('error-focus');
+    $(this).closest('.modal-form-group').find('.input-error').remove();
+  }
+});
+
+
+
+$(document).ready(function(){
+
+  // dismiss modal when click on close icon.
+  $('body').on('click', '.close', function(){
+    $(this).closest('.login-modal-div').fadeOut('fast');
+  });
+
+  //dismiss modal when esc key pressed.
+  $(document).keypress(function(e) { 
+      if (e.keyCode == 27) { 
+          $(".login-modal-div").fadeOut('fast');
+      } 
+  });
+
+  //dismiss modal when click outside of it.
+  $('body').on('click', '.login-modal-div', function(){
+      $(".login-modal-div").fadeOut('fast');
+  });
+
+  $('body').on('click', '.login-modal-div .modal-content', function(e){
+      e.stopPropagation();
+  });
+
+  //toggle between forgot div and login div.
+  $('body').on('click', '.login-link, .forgot-link', function(){
+    if($(this).hasClass('login-link')){
+      $('.forgot-div').slideUp();
+      $('.login-register-div').slideDown();
+    }
+    else{
+      $('.login-register-div').slideUp();
+      $('.forgot-div').slideDown();
+    }
+  });
+
+  // redirect function.
+  function redirect(where) {
+    if( where == 'to' ) {
+      window.location.href = to;
+    } else if( where == 'reset' ) {
+      q2to3();
+      $("#ruser").val($("#fuser").val());
+    }
+    else{
+      if(window.location.href == where){
+          window.location.reload(true);
+      }
+      else{
+          window.location.href = where;
+      }
+    }
+  }
+
+  // event on submit either login, register or forgot form.
+  $(".login-form").submit( function(e) {
+    e.preventDefault();
+    this1 = $(this);
+    $('.spinner-loading-overlay').show();
+    this1.find(".extra").empty();
+    this1.find('input[type=submit]').attr('disabled', true);
+    var browserInfo = fetchBrowserInfo();
+
+    $.ajax({
+      type: "POST",
+      url: 'https://auth.geeksforgeeks.org/auth.php',
+      data: $(this).serialize()+"&browserInfo="+JSON.stringify(browserInfo),
+      xhrFields: {
+        withCredentials: true
+      },
+      dataType: "json",
+      success: function( data ) {
+        this1.find('input[type=submit]').attr('disabled', false);
+        if( data.redirect ) {
+          redirect( data.redirect );
+        } else if( data.extra ) {
+          $('.spinner-loading-overlay').hide();
+          this1.find(".extra").append(data.extra);
+          var errorTxt = this1.find(".extra").find('div').text().trim();
+          grecaptcha.reset(loginWidgetId);
+          if(errorTxt == "Captcha validation needed" && this1.attr('id') == "Login"){
+            if(!$('#loginCaptcha').closest('.modal-form-group').find('input[name=recaptchaShow]').length){
+              $('#loginCaptcha').closest('.modal-form-group').append('<input name="recaptchaShow" type="hidden" value="1">');
+            }
+            $('#loginCaptcha').closest('.modal-form-group').show();
+          }
+        }
+      },
+      error: function(jqXHR, exception, errorThrown) {
+        this1.find('input[type=submit]').attr('disabled', false);
+        $('.spinner-loading-overlay').hide();
+        console.log( "An error occurred" );
+      },
+      complete: function() {
+        this1.find('input[type=submit]').attr('disabled', false);
+        if(this1.attr('id') == "Forgot"){
+          grecaptcha.reset(forgotWidgetId);
+        }
+        else{
+          grecaptcha.reset(registerWidgetId);
+        }
+      }
+    });
+    return false;
+  });
+
+  //prevent to type space bar in register password field.
+  $('body').on('keydown', 'input[name=pass]', function(e){
+      if($(this).closest('form').find('input[name=reqType]').length && $(this).closest('form').find('input[name=reqType]').val() == "Register"){
+          return e.which !== 32;
+      }
+  });
+
+
+// Facebook login
+  $('#fblogin').click(function(e){
+      e.preventDefault();
+      var w = 600, h = 350, left = screen.width / 2 - w / 2, top = screen.height / 2 - h / 2;
+      var remember = $('#Login').find('input[name=rem]').is(":checked");
+      var redirect = $('#Login').find('input[name=to]').val();
+      var browserInfo = JSON.stringify(fetchBrowserInfo());
+      window.open('https://auth.geeksforgeeks.org//fb-login.php?to='+redirect+'&rem='+remember+'&browserInfo='+browserInfo,'_self','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+',top='+top+', left='+left);
+    }); 
+
+  // linkedin login
+  $('#inlogin').click(function(e){
+      e.preventDefault();
+      var w = 600, h = 350, left = screen.width / 2 - w / 2, top = screen.height / 2 - h / 2;
+      var remember = $('#Login').find('input[name=rem]').is(":checked");
+      var redirect = $('#Login').find('input[name=to]').val();
+      var browserInfo = JSON.stringify(fetchBrowserInfo());
+      window.open('https://auth.geeksforgeeks.org//linkedin-login.php?to='+redirect+'&rem='+remember+'&browserInfo='+browserInfo,'_self','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+',top='+top+', left='+left);
+    });
+
+  // github login
+  $('#gitlogin').click(function(e){
+      e.preventDefault();
+      var w = 600, h = 350, left = screen.width / 2 - w / 2, top = screen.height / 2 - h / 2;
+      var remember = $('#Login').find('input[name=rem]').is(":checked");
+      var redirect = $('#Login').find('input[name=to]').val();
+      var browserInfo = JSON.stringify(fetchBrowserInfo());
+      window.open('https://auth.geeksforgeeks.org//github-login.php?to='+redirect+'&rem='+remember+'&browserInfo='+browserInfo,'_self','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+',top='+top+', left='+left);
+    });
+
+  $('#glogin').click(function(e){
+      e.preventDefault();
+      var remember = $('#Login').find('input[name=rem]').is(":checked");
+      var redirect = $('#Login').find('input[name=to]').val();
+      var browserInfo = JSON.stringify(fetchBrowserInfo());
+      window.location = "https://auth.geeksforgeeks.org/googleLogin.php?redirect="+redirect+"&remember="+remember+"&browserInfo="+browserInfo;  
+    });
+});
+
+function fetchBrowserInfo(){
+  var browserInfo = {};
+  browserInfo.appName = navigator.appName;
+  browserInfo.appCodeName = navigator.appCodeName;
+  browserInfo.cookieEnable = navigator.cookieEnabled;
+  browserInfo.prodName = navigator.product;
+  browserInfo.appVersion = navigator.appVersion;
+  browserInfo.appOs = navigator.platform;
+  browserInfo.appLang = navigator.language;
+  browserInfo.vendorName = navigator.vendor;
+  browserInfo.loginDomain = "practice";
+
+  return browserInfo;
+}
+
+// suggest organization.
+var instituteListBlood = new Bloodhound({
+  initialize: false,
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  sufficient: 5,
+  prefetch: { 
+    url: 'https://api.geeksforgeeks.org/api/institutes/all'
+  },
+  remote: {
+    url: 'https://api.geeksforgeeks.org/api/institutes/%QUERY/all',
+    wildcard: '%QUERY',
+    filter: function (data) {
+      instituteListBlood.add(data);
+      return data;
+    }
+  }
+});
+
+$(document).ready(function () {
+  instituteListBlood.clearPrefetchCache();
+  instituteListBlood.initialize();
+  $('input.typeahead').typeahead({
+    minLength: 2,
+    dynamic: false,
+    highlight: true,
+    cache: "sessionStorage",
+    searchOnfocus: true,
+    offset: true,
+    blurOnTab: true
+  }, {
+    displaykey: 'value',
+    limit: 15,
+    source: instituteListBlood.ttAdapter(),
+    accent: true,
+    templates: {
+    empty: [
+            ''
+            ].join('\n')
+    }
+  });
+});
+</script>
+</div>
+   
+
+
+
+{% endblock content  %}

@@ -7,7 +7,5 @@ def home (request):
 def contact (request):
     context={'contact':'active'}
     return render(request, 'core/contact.html', context)
-def login (request):
-    context={'contact':'active'}
-    return render(request, 'core/login.html', context)    
+ 
     
